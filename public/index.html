@@ -1,10 +1,22 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-    <title></title>
+    <title>image board</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="/js/vue.js"></script>
-    <script src="/js/axios.min.js"></script>
+<div id="main">
+    <section id="image-grid">
+        <div class="image-container" v-for="image in imageJSON">
+            <p>{{image.title}}</p>
+            <img class="image" :src="image.url" alt="">
+            <p class="description">{{image.description}}</p>
+            <p class="username">{{image.username}}</p>
+        </div>
+    </section>
+</div>
+<script src="/js/axios.min.js"></script>
+<script src="/js/vue.js"></script>
+<script src="/image-board.js"></script>
 </body>
 </html>
