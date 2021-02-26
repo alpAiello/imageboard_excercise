@@ -6,6 +6,17 @@
 </head>
 <body>
 <div id="main">
+
+    <div id="upload">
+        <h2>
+            Share your favorite local art pieces
+        </h2>
+        <label for="title">Image title</label>
+        <input type="text" name="title" id="title" v-model="title">
+        <input type="file" name="file" accept="image/*" v-on:change="fileSelected">
+        <button v-on:click="uploadImage">upload</button>
+    </div>
+
     <section id="image-grid">
         <div class="image-container" v-for="image in imageJSON">
             <p>{{image.title}}</p>

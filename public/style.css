@@ -3,6 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+#upload{
+    background-color: cornflowerblue;
+    border: 1px solid black;
+    padding: 5px;
+}
 #image-grid{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
