@@ -11,23 +11,25 @@
         <h2>
             Share your favorite local art pieces
         </h2>
-        <label for="title">Image title</label>
+        <label for="title">Title</label>
         <input type="text" name="title" id="title" v-model="title">
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description" v-model="description">
         <input type="file" name="file" accept="image/*" v-on:change="fileSelected">
         <button v-on:click="uploadImage">upload</button>
     </div>
 
     <section id="image-grid">
-        <div class="image-container" v-for="image in imageJSON">
+        <div class="image-container" v-for="image in images">
             <p>{{image.title}}</p>
             <img class="image" :src="image.url" alt="">
             <p class="description">{{image.description}}</p>
-            <p class="username">{{image.username}}</p>
+            <!--<p class="username">{{image.username}}</p>-->
         </div>
     </section>
 </div>
-<script src="/js/axios.min.js"></script>
-<script src="/js/vue.js"></script>
-<script src="/image-board.js"></script>
+<script src="./js/axios.min.js"></script>
+<script src="./js/vue.js"></script>
+<script src="./image-board.js"></script>
 </body>
 </html>
