@@ -1,26 +1,30 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 #upload{
     background-color: cornflowerblue;
     border: 1px solid black;
-    padding: 5px;
+    position: sticky;
+    top: 0;
 }
-#image-grid{
+.image-container{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: masonry;
     grid-gap: 1rem;
 }
 .image-container {
-    background-color: cornflowerblue;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 40px 1fr 80px 30px;
-    grid-gap: 1rem;
+      padding: 0;
+}
+
+.image-container li {
+    margin: 0;
 }
 .image{
-    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+}
+#image-grid{
+    width: 90vw;
+    width: clamp(16rem, 90vw, 80rem);
+    margin-left: auto;
+    margin-right: auto;
 }

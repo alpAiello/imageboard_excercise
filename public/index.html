@@ -3,6 +3,7 @@
 <head>
     <title>image board</title>
     <link rel="stylesheet" href="style.css">
+    <link href="/tailwind.css" rel="stylesheet">
 </head>
 <body>
 <div id="main">
@@ -20,12 +21,14 @@
     </div>
 
     <section id="image-grid">
-        <div class="image-container" v-for="image in images">
-            <p>{{image.title}}</p>
-            <img class="image" :src="image.url" alt="">
-            <p class="description">{{image.description}}</p>
-            <!--<p class="username">{{image.username}}</p>-->
-        </div>
+        <ul class="image-container" v-for="image in images">
+            <li>
+                <h3>{{image.title}}</h3>
+                <p class="description">{{image.description}}</p>
+                <img class="image" :src="image.url" alt="">
+                <!--<p class="username">{{image.username}}</p>-->
+            </li>
+        </ul>
     </section>
 </div>
 <script src="./js/axios.min.js"></script>
