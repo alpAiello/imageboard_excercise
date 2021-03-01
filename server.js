@@ -42,14 +42,11 @@ app.get("/api/images", (req, res) => {
 });
 
 app.post("/api/upload", uploader.single("file"), (req, res) => {
-    console.log("Super! Upload ist im Gange..");
-    console.log("request.body", req.body);
-    console.log("request.file", req.file);
     s3.uploadFile(req.file)
         .then((result) => {
             console.log('S3 result', result);
             const fileURL = s3.getS3URL(req.file.filename);
-            db.addImage(req.body.title, req.body.description,fileURL)
+            db.addImage(req.body.username, req.body.title, req.body.description,fileURL)
                 .then(data => {
                     console.log(data.rows[0]);
                     res.send(data.rows[0]);

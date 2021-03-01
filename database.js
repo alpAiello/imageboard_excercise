@@ -11,12 +11,12 @@ exports.getImages = () => {
         images
 `);};
 
-exports.addImage = (title, description, url) => {
+exports.addImage = (username, title, description, url) => {
     return db.query(
         `
         INSERT INTO 
-            images (title, description, url)
+            images (username, title, description, url)
         VALUES
-            ($1, $2, $3)
-        RETURNING title, description, url;
-`, [title, description, url]);};
+            ($1, $2, $3, $4)
+        RETURNING *;
+`, [username, title, description, url]);};

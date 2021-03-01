@@ -3,10 +3,3 @@
     padding: 0;
     box-sizing: border-box;
 }
-#image{
-    transition: all .2s ease-in;
-    filter: grayscale(100%);
-}
-#image:hover {
-    filter: grayscale(0%)
-}

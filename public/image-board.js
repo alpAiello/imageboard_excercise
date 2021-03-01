@@ -2,6 +2,7 @@ new Vue({
     el: "#main",
     data: {
         images: null,
+        username: "",
         title: "",
         description: "",
         file: null,
@@ -13,10 +14,14 @@ new Vue({
             });
     },
     methods: {
+        showInModal: function(){
+            console.log("HELLO MODAL");
+        },
         uploadImage: function(){
             const uploadData = new FormData();
 
             uploadData.append("title", this.title);
+            uploadData.append("username", this.username);
             uploadData.append("file", this.file);
             uploadData.append("description", this.description);
             axios.post("/api/upload", uploadData)
@@ -30,4 +35,15 @@ new Vue({
             this.file = event.target.files[0];
         }
     }
+});
+Vue.component("modal",{
+    data: function () {
+        return{
+            username: "",
+            title: "",
+            description: "",
+            url:""
+        };
+    },
+    template: "#modal"
 });
