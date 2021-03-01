@@ -3,24 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
-#upload{
-    background-color: cornflowerblue;
-    border: 1px solid black;
-    padding: 5px;
+#image{
+    transition: all .2s ease-in;
+    filter: grayscale(100%);
 }
-#image-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-gap: 1rem;
-}
-.image-container {
-    background-color: cornflowerblue;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 40px 1fr 80px 30px;
-    grid-gap: 1rem;
-}
-.image{
-    width: 100%;
+#image:hover {
+    filter: grayscale(0%)
 }

@@ -1,13 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8" />
     <title>image board</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-indigo-lightest font-sans">
 <div id="main">
 
-    <div id="upload">
+    <div class="w-100 h-24 bg-blue-500" id="upload">
         <h2>
             Share your favorite local art pieces
         </h2>
@@ -19,12 +22,14 @@
         <button v-on:click="uploadImage">upload</button>
     </div>
 
-    <section id="image-grid">
-        <div class="image-container" v-for="image in images">
-            <p>{{image.title}}</p>
-            <img class="image" :src="image.url" alt="">
-            <p class="description">{{image.description}}</p>
-            <!--<p class="username">{{image.username}}</p>-->
+    <section class="grid grid-cols-6 gap-2 mx-auto p-8">
+        <div class="bg-white mx-auto p-8 rounded h-full text-grey-darkest no-underline shadow-md" v-for="image in images">
+            <img class="w-full block rounded-b" id="image" :src="image.url" alt="">
+            <div>
+                <p class="text-l"><b>Title:</b> {{image.title}}</p>
+                <p class="text-xs pt-2"><b>Description:</b> {{image.description}}</p>
+                <!--<p class="username">{{image.username}}</p>-->
+            </div>
         </div>
     </section>
 </div>
