@@ -11,6 +11,20 @@ exports.getImages = () => {
         images
 `);};
 
+exports.getImage = (id) => {
+    return db.query(
+        `
+    SELECT
+        *
+    FROM
+        images
+    WHERE
+        images.id = $1;
+        `
+        ,[id]
+    );
+};
+
 exports.addImage = (username, title, description, url) => {
     return db.query(
         `

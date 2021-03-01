@@ -41,6 +41,18 @@ app.get("/api/images", (req, res) => {
         .catch((err) => console.log(err));
 });
 
+app.get("/api/image/:id", (req, res) => {
+    console.log(req.params.id);
+    db.getImage(req.params.id)
+        .then((image) => {
+            console.log(image.rows[0]);
+            const imageData = image.rows[0];
+            const imageJSON = JSON.stringify(imageData);
+            res.send(imageJSON);
+        })
+        .catch((err) => console.log(err));
+});
+
 app.post("/api/upload", uploader.single("file"), (req, res) => {
     s3.uploadFile(req.file)
         .then((result) => {

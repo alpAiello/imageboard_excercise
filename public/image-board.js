@@ -6,6 +6,7 @@ new Vue({
         title: "",
         description: "",
         file: null,
+        selectedImageID: ""
     },
     mounted: function (){
         axios.get("/api/images")
@@ -14,9 +15,6 @@ new Vue({
             });
     },
     methods: {
-        showInModal: function(){
-            console.log("HELLO MODAL");
-        },
         uploadImage: function(){
             const uploadData = new FormData();
 
@@ -36,14 +34,19 @@ new Vue({
         }
     }
 });
+
 Vue.component("modal",{
-    data: function () {
-        return{
-            username: "",
-            title: "",
-            description: "",
-            url:""
+    data: function(){
+        return {
+            image: { }
         };
     },
-    template: "#modal"
+    props: ["id"],
+    template: "#modal",
+    mounted: function() {
+        axios.get("/api/image/" + this.id)
+            .then((res)=>{
+                this.image = res.data;
+            });
+    }
 });
