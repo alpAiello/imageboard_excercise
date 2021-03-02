@@ -10,7 +10,7 @@
 <body class="bg-indigo-200 font-sans">
 <div id="main">
     <modal v-on:hide-modal="selectedImageID=null" v-if="selectedImageID" :id="selectedImageID"></modal>
-    <div class="w-100 h-24 bg-indigo-500" id="upload">
+    <div class="text-white flex w-100 h-24 bg-indigo-800" id="upload">
         <h2>
             Share your favorite local art pieces
         </h2>
@@ -25,7 +25,7 @@
     </div>
     <section class="grid grid-cols-4 gap-6 p-8">
         <div v-on:click="selectedImageID = image.id"
-             class="bg-white p-8 rounded-md text-grey-800 no-underline shadow-lg"
+             class="hover:border-red-300 hover:shadow-none border-4 border-white bg-white p-8 rounded-md no-underline shadow-lg"
              v-for="image in images">
             <img :src="image.url" alt="">
             <div>
@@ -45,6 +45,7 @@
                 <p class="text-xl"><b>Title:</b> {{image.title}}</p>
                 <p class="text-xs pt-2"><b>Description:</b> {{image.description}}</p>
                 <p class="text-xs pt-2"><b>Username:</b> {{image.username}}</p>
+                <p class="text-xs pt-2"><b>added on </b> {{image.created_at}}</p>
             </div>
         </div>
     </div>
