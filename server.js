@@ -31,8 +31,8 @@ const uploader = multer({
     storage: diskStorage,
 });
 
-app.get("/api/images", (req, res) => {
-    db.getImages()
+app.get("/api/images/:lastID", (req, res) => {
+    db.getImages(req.params.lastID)
         .then((images) => {
             const imageArray = images.rows;
             const imageJSON = JSON.stringify(imageArray);

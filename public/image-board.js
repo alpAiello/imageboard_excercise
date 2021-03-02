@@ -1,6 +1,7 @@
 new Vue({
     el: "#main",
     data: {
+        lastID: 1,
         images: null,
         username: "",
         title: "",
@@ -9,7 +10,7 @@ new Vue({
         selectedImageID: ""
     },
     mounted: function (){
-        axios.get("/api/images")
+        axios.get("/api/images/" + this.lastID)
             .then((res)=>{
                 this.images = res.data;
             });
@@ -25,7 +26,7 @@ new Vue({
             axios.post("/api/upload", uploadData)
                 .then((response)=>{
                     console.log("upload successfully", response.data);
-                    this.images.push(response.data);
+                    this.images.unshift(response.data);
                 })
                 .catch(err=> err);
         },
