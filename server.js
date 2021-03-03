@@ -1,11 +1,15 @@
 const express = require("express");
+var bodyParser = require('body-parser');
 const multer = require("multer");
 const uidSafe = require("uid-safe");
 const path = require("path");
 const db = require("./database");
 const s3 = require("./s3");
 
+
 const app = express();
+app.use(bodyParser.json());
+app.use(express.urlencoded({extended:false}));
 exports.app = app;
 
 app.use(express.static("public"));
@@ -41,7 +45,7 @@ app.get("/api/images/:lastID/:limit", (req, res) => {
             const lastID = images.rows[images.rows.length - 1].id;
             const getNumberAvailableImages = db.getNumberAvailableImages(lastID);
             getNumberAvailableImages.then((rest)=>{
-                const restImages = rest.rows[0].count;
+                const restImages = Number(rest.rows[0].count);
                 const imagesObject = {"imageArray": imageArray,'lastID': lastID, "restImages": restImages};
                 console.log("imagesObject------>", imagesObject);
                 const imagesJSON = JSON.stringify(imagesObject);
@@ -49,6 +53,33 @@ app.get("/api/images/:lastID/:limit", (req, res) => {
             });
         })
         .catch((err) => console.log(err));
+});
+
+app.get("/api/comments/:imageID", (req, res) => {
+    const imageID = req.params.imageID;
+    console.log(imageID);
+    const getComments = db.getComments(imageID);
+    getComments
+        .then((comments)=>{
+            console.log(comments);
+            res.send(comments);
+        })
+        .catch((err) => console.log(err));
+});
+
+app.post("/api/comment", (req, res) => {
+    console.log(req.body);
+    const {comment, userName, imageID} = req.body;
+    console.log(comment);
+    console.log(userName);
+    console.log(imageID);
+    const addComment = db.addComment(comment, userName, imageID);
+    addComment
+        .then((comment)=>{
+            console.log(comment);
+            res.send(comment);
+        })
+        .catch(err=>err);
 });
 
 app.get("/api/image/:id", (req, res) => {

@@ -8,5 +8,13 @@ CREATE TABLE images(
                        url VARCHAR NOT NULL,
                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE comments(
+                       id SERIAL PRIMARY KEY,
+                       image_id INTEGER REFERENCES images(id),
+                       username VARCHAR (20),
+                       comment TEXT,
+                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-SELECT * FROM images
+SELECT * FROM images;
+SELECT * FROM comments;
