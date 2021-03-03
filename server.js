@@ -31,12 +31,22 @@ const uploader = multer({
     storage: diskStorage,
 });
 
-app.get("/api/images/:lastID", (req, res) => {
-    db.getImages(req.params.lastID)
-        .then((images) => {
+app.get("/api/images/:lastID/:limit", (req, res) => {
+    const limit = req.params.limit;
+    const getImages = db.getImages(req.params.lastID, limit);
+    getImages
+        .then((images)=>{
+            console.log("imagesRow0", images.rows);
             const imageArray = images.rows;
-            const imageJSON = JSON.stringify(imageArray);
-            res.send(imageJSON);
+            const lastID = images.rows[images.rows.length - 1].id;
+            const getNumberAvailableImages = db.getNumberAvailableImages(lastID);
+            getNumberAvailableImages.then((rest)=>{
+                const restImages = rest.rows[0].count;
+                const imagesObject = {"imageArray": imageArray,'lastID': lastID, "restImages": restImages};
+                console.log("imagesObject------>", imagesObject);
+                const imagesJSON = JSON.stringify(imagesObject);
+                res.send(imagesJSON);
+            });
         })
         .catch((err) => console.log(err));
 });

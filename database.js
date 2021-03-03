@@ -2,17 +2,27 @@ const SPG = require("spiced-pg");
 const dbUrl = "postgres://alessandroaiello@localhost:5432/image-board";
 const db = SPG(dbUrl);
 
-exports.getImages = (lastID) => {
+exports.getImages = (lastID, limit) => {
     return db.query(
         `
-    SELECT
-        *
+    SELECT * FROM images
+    WHERE
+        id < $1
+    ORDER BY created_at DESC
+    LIMIT
+        $2
+`, [lastID, limit]);
+};
+
+exports.getNumberAvailableImages = (lastID) => {
+    return db.query(
+        `
+    SELECT 
+        COUNT(id)
     FROM
         images
-    LIMIT
-        2
-    OFFSET        
-        $1;
+    WHERE
+        id < $1;
 `, [lastID]);
 };
 

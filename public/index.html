@@ -10,36 +10,34 @@
 <body style="background-image: url('/whitedot.png')" class="bg-repeat font-sans">
 <div id="main">
     <modal v-on:hide-modal="selectedImageID=null" v-if="selectedImageID" :id="selectedImageID"></modal>
-    <div class="text-white grid grid-cols-6 w-100 bg-indigo-800 gap-4" id="upload">
+    <div class="border-b-2 border-white text-white grid grid-cols-6 w-100 bg-indigo-800 gap-4" id="upload">
         <h2 class="text-center text-5xl col-span-6 p-10">
-            We Can Do It !
+            💪🏽 We Can Do It !
         </h2>
-        <div class="rounded-t-lg bg-yellow-400 grid grid-cols-2 w-2/3 xl:w-1/4 col-start-1 col-span-6 justify-self-center">
+        <div class="px-2 rounded-t-lg bg-yellow-400 grid grid-cols-2 w-5/6 md:w-1/4 col-start-1 col-span-6 justify-self-center">
             <label class="text-xl px-2 self-center text-black md:justify-self-center xl:justify-self-start" for="title">Name</label>
-            <input class="rounded-t-lg m-2 border-black border justify-self-center" type="text" name="title" id="title" v-model="title">
+            <input class="text-black w-full rounded-t-lg m-2 border-black border justify-self-center" type="text" name="title" id="title" v-model="title">
         </div>
-        <div class="bg-yellow-400 grid grid-cols-2 w-2/3 xl:w-1/4 col-start-1 col-span-6 justify-self-center">
+        <div class="px-2 bg-yellow-400 grid grid-cols-2 w-5/6 md:w-1/4 col-start-1 col-span-6 justify-self-center">
             <label class="text-xl px-2 self-center text-black md:justify-self-center xl:justify-self-start" for="description">Description</label>
-            <input class="m-2 border-black border justify-self-center" type="text" name="description" id="description" v-model="description">
+            <input class="text-black w-full m-2 border-black border justify-self-center" type="text" name="description" id="description" v-model="description">
         </div>
-        <div class="rounded-b-lg bg-yellow-400 grid grid-cols-2 w-2/3 xl:w-1/4 col-start-1 col-span-6 justify-self-center">
+        <div class="px-2 rounded-b-lg bg-yellow-400 grid grid-cols-2 w-5/6 md:w-1/4 col-start-1 col-span-6 justify-self-center">
             <label class="text-xl px-2 self-center text-black md:justify-self-center xl:justify-self-start" for="username">Username</label>
-            <input class="rounded-b-lg m-2 border-black border justify-self-center" type="text" name="username" id="username" v-model="username">
+            <input class="text-black w-full rounded-b-lg m-2 border-black border justify-self-center" type="text" name="username" id="username" v-model="username">
         </div>
-        <input class="p-4 text-white col-span-6 justify-self-center" type="file" name="file" accept="image/*" v-on:change="fileSelected">
-        <button class="text-xl p-2 m-2 bg-yellow-400 text-black col-span-6 justify-self-center mb-4 rounded" v-on:click="uploadImage">UPLOAD</button>
+        <input class="p-2 text-white col-span-6 justify-self-center" type="file" name="file" accept="image/*" v-on:change="fileSelected">
+        <button class="text-xl p-2 mb-4 bg-yellow-400 text-black col-span-6 justify-self-center rounded" v-on:click="uploadImage">UPLOAD</button>
     </div>
-    <div class="grid justify-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-6 p-8 ">
+    <div class="grid justify-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6 gap-6 p-8 ">
         <div v-on:click="selectedImageID = image.id"
-             class="bg-indigo-700 bg-opacity-95 w-80 h-80 md:h-96 md:w-96 grid hover:border-indigo-800 hover:shadow-none border-4 border-white p-8 rounded-md no-underline shadow-2xl"
+             class="bg-indigo-700 bg-opacity-95 w-80 h-80 md:h-96 md:w-96 grid hover:border-white hover:shadow-none border-2 border-indigo-800 p-8 rounded-md no-underline shadow-2xl"
              v-for="image in images">
-            <div class="overflow-hidden bg-white bg-opacity-40">
-            <img class="max-h-full object-contain mx-auto my-2" :src="image.url" alt="">
+            <div class="overflow-hidden bg-indigo-700 bg-opacity-10">
+            <img class="max-h-full object-contain mx-auto" :src="image.url" alt="">
             </div>
             <div class="self-end">
-                <p class="my-4 text-white text-center text-xl"><b>Title:</b> {{image.title}}</p>
-                <p class="text-white text-center text-xs pt-2"><b>Description:</b> {{image.description}}</p>
-                <p class="text-white text-center text-xs pt-2"><b>Username:</b> {{image.username}}</p>
+                <p class="my-4 text-white text-center text-xl"><b>Name:</b> {{image.title}}</p>
             </div>
         </div>
     </div>

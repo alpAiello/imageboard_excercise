@@ -1,7 +1,9 @@
 new Vue({
     el: "#main",
     data: {
-        lastID: 1,
+        limit: 3,
+        restImages: 0,
+        lastID: 100000,
         images: null,
         username: "",
         title: "",
@@ -10,9 +12,12 @@ new Vue({
         selectedImageID: ""
     },
     mounted: function (){
-        axios.get("/api/images/" + this.lastID)
+        axios.get("/api/images/" + this.lastID + "/" + this.limit)
             .then((res)=>{
-                this.images = res.data;
+                console.log(res.data);
+                this.images = res.data["imageArray"];
+                this.restImages = res.data["restImages"];
+                this.lastID = res.data["lastID"];
             });
     },
     methods: {
