@@ -50,7 +50,7 @@ exports.getComments = (imageID) => {
     WHERE
         comments.image_id = $1
     ORDER BY
-        created_at DESC;
+        id;
         `
         ,[imageID]
     );

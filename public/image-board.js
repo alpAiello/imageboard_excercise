@@ -3,7 +3,7 @@ new Vue({
     data: {
         showErrorForm: true,
         showMoreButton: true,
-        limit: 12,
+        limit: 6,
         restImages: 0,
         lastID: 100000,
         images: null,
@@ -45,6 +45,10 @@ new Vue({
                     .then((response) => {
                         console.log("upload successfully", response.data);
                         this.images.unshift(response.data);
+                        this.title = "";
+                        this.username = "";
+                        this.description = "";
+                        this.file = null;
                     })
                     .catch((err) => err);
             } else {
@@ -60,9 +64,25 @@ new Vue({
 
     },
     created: function() {
+        let didScroll = false;
         document.addEventListener('scroll', ()=>{
-            console.log(document.documentElement.scrollTop, window.innerHeight, document.documentElement.offsetHeight);
+            didScroll = true;
         });
+        const showMoreImages = this.showMoreImages;
+        setInterval(function(){
+            if(didScroll){
+                didScroll=false;
+                const documentTopPosition = document.documentElement.scrollTop;
+                const screenHeight = window.innerHeight;
+                const documentHeight = document.documentElement.offsetHeight;
+                const triggerPoint = documentHeight - 2*screenHeight < documentTopPosition;
+                console.log(documentHeight, screenHeight, documentTopPosition, documentHeight - 2*screenHeight, triggerPoint);
+                if(triggerPoint) {
+                    showMoreImages();
+                }
+
+            }
+        }, 250);
     },
 });
 
@@ -102,6 +122,8 @@ Vue.component("comments", {
                 .then((response) => {
                     console.log("upload successfully", response.data);
                     this.comments.push(response.data.rows[0]);
+                    this.comment = "";
+                    this.userNameComment = "";
                 })
                 .catch((err) => err);
         }

@@ -72,15 +72,15 @@
     </div>
 </script>
 <script id="comments" type="text/x-template">
-    <div>
+    <div class="m-4">
         <div class="bg-white text-black w-full rounded-lg p-2 border-black border justify-self-center my-4 flex flex-col" v-for="commentData in comments">
             <p class="text-lg font-bold">{{commentData.comment}}</p>
             <p class="text-xs">User: {{commentData.username}}</p>
             <p class="text-xs">Date: {{commentData["created_at"]}}</p>
         </div>
-        <label for="comment"></label>
+        <label class="mx-4" for="comment">comment</label>
         <input class="text-black w-full rounded-t-lg m-2 border-black border justify-self-center" id="comment" type="text" v-model="comment">
-        <label for="userNameComment"></label>
+        <label class="mx-2" for="userNameComment">user name</label>
         <input class="text-black w-full rounded-b-lg m-2 border-black border justify-self-center" id="userNameComment" type="text" v-model="userNameComment">
         <button v-on:click="addComment" class="float-right border border-black hover:border-white hover:shadow-none shadow-xl text-xl p-2 mb-4 bg-yellow-400 text-black col-span-6 rounded">send</button>
     </div>
