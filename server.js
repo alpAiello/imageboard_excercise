@@ -1,5 +1,5 @@
 const express = require("express");
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const multer = require("multer");
 const uidSafe = require("uid-safe");
 const path = require("path");
@@ -8,7 +8,6 @@ const s3 = require("./s3");
 
 
 const app = express();
-app.use(bodyParser.json());
 app.use(express.urlencoded({extended:false}));
 exports.app = app;
 
@@ -67,7 +66,7 @@ app.get("/api/comments/:imageID", (req, res) => {
         .catch((err) => console.log(err));
 });
 
-app.post("/api/comment", (req, res) => {
+app.post("/api/comment", bodyParser.json(), (req, res) => {
     console.log(req.body);
     const {comment, userName, imageID} = req.body;
     console.log(comment);

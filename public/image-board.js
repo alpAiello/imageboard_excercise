@@ -3,7 +3,7 @@ new Vue({
     data: {
         showErrorForm: true,
         showMoreButton: true,
-        limit: 6,
+        limit: 12,
         restImages: 0,
         lastID: 100000,
         images: null,
@@ -35,7 +35,7 @@ new Vue({
         },
         uploadImage: function () {
             const uploadData = new FormData();
-            if(this.title && this.userName && this.file && this.description) {
+            if(this.title && this.username && this.file && this.description) {
                 uploadData.append("title", this.title);
                 uploadData.append("username", this.username);
                 uploadData.append("file", this.file);
@@ -59,9 +59,6 @@ new Vue({
         fileSelected: function (event) {
             this.file = event.target.files[0];
         },
-    },
-    watch: function() {
-
     },
     created: function() {
         let didScroll = false;
